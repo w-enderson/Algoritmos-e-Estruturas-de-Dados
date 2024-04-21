@@ -6,7 +6,7 @@ int main(){
     std::vector<int> arr{8,1,6,2,3,7,5,9,4,600,0};
 
     // sorting vector using brute force (selection sort)
-    for (int i=0; i<arr.size(); i++){
+    for (int i=0; i<arr.size()-1; i++){
         min = i;
 
         for (int j=i+1; j<arr.size(); j++){
