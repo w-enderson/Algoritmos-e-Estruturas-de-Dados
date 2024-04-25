@@ -1,13 +1,5 @@
 #include <iostream>
 
-int* subArray(int arr[], int begin, int end){
-    int* newArr = new int[end-begin+1]; 
-    for (int i = 0; i < end-begin+1; i++){ 
-        newArr[i] = arr[begin+i];
-    }
-
-    return newArr;
-}
 
 void merge(int B[], int C[], int arr[], int p, int q){
     int i=0, j=0, k=0;
@@ -37,12 +29,22 @@ void merge(int B[], int C[], int arr[], int p, int q){
 
 void mergeSort(int arr[], int n){
     if (n>1){
-        int *B = subArray(arr, 0, n/2);
-        int *C = subArray(arr, n/2, n-1);
+        int mid = n / 2;
 
-        mergeSort(B, n/2);
-        mergeSort(C, n-n/2);
-        merge(B, C, arr, n/2, n-n/2);
+        int* B = new int[mid];
+        int* C = new int[n - mid];
+
+        for (int i = 0; i < mid; i++) {
+            B[i] = arr[i];
+        }
+        for (int i = mid; i < n; i++) {
+            C[i-mid] = arr[i];
+        }
+
+        mergeSort(B, mid);
+        mergeSort(C, n-mid);
+        merge(B, C, arr, mid, n-mid);
+
 
         delete[] B;
         delete[] C;
