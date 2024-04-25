@@ -16,7 +16,7 @@ int main(){
         arr[j+1] = v;
     }
     for (auto x: arr){
-        std::cout << x << std::endl;
+        std::cout << " " << x;
     }
 
     return 0;
