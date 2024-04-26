@@ -1,2 +1,4 @@
 /.vscode
-/output
+*/.output
+*.exe
+/atividades

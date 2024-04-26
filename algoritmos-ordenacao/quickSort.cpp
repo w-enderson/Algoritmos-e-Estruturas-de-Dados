@@ -1,10 +1,10 @@
 #include <iostream>
 #include <algorithm>
 
-int hoarePartition(int arr[], int low, int high) {
-    int pivot = arr[low];
-    int i = low - 1;
-    int j = high + 1;
+int hoarePartition(int arr[], int l, int r) {
+    int pivot = arr[l];
+    int i = l - 1;
+    int j = r + 1;
     while (true) {
         do {
             i++;
@@ -18,11 +18,11 @@ int hoarePartition(int arr[], int low, int high) {
     }
 }
 
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int partitionIndex = hoarePartition(arr, low, high);
-        quickSort(arr, low, partitionIndex);
-        quickSort(arr, partitionIndex + 1, high);
+void quickSort(int arr[], int l, int r) {
+    if (l < r) {
+        int partitionIndex = hoarePartition(arr, l, r);
+        quickSort(arr, l, partitionIndex);
+        quickSort(arr, partitionIndex + 1, r);
     }
 }
 
