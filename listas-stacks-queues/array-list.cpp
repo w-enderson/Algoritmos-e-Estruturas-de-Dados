@@ -30,7 +30,7 @@ template <class W> class AList {
             listSize++;
         }
         W remove(){
-            if (listSize<=curr){
+            if (curr<0 || listSize<=curr){
                 cout << "sem elemento, impossível remover!!" << endl;
                 return -1;
             }
