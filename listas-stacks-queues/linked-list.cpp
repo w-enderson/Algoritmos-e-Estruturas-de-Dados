@@ -1,5 +1,5 @@
 #include <iostream>
-
+using namespace std;
 template <class E> class Link {
     public:
         E el;
@@ -60,7 +60,7 @@ template <class E> class LList {
             for (int i=0; i<0; i++) curr=curr->next;
         }
         const E& getValue() const {
-            if (curr->next==NULL) return -1;
+            if (curr->next==NULL) exit(1);
             return curr->next->el;
         }
         void insert(const E& el) {
@@ -73,7 +73,7 @@ template <class E> class LList {
             listSize++;
         }
         E remove(){
-            if (curr->next==NULL) return -1;
+            if (curr->next==NULL) exit(1);
             E el = curr->next->el;
             Link<E>* tempLink = curr->next;
             if (tail==curr->next) tail=curr;
@@ -89,11 +89,61 @@ template <class E> class LList {
 };
 
 int main() {
-    LList <int> a;
-    a.insert(11);
-    a.insert(11);
-    a.insert(11);
-    a.remove();
+    LList<int> a;
+
+    // Insert elements into the list
+    a.insert(10);
+    a.insert(20);
+    a.insert(30);
+
+    // Move to the start of the list
+    a.moveToStart();
+
+    // Move to the end of the list
+    a.moveToEnd();
+
+    // Move to the previous element
+    a.prev();
+
+    // Move to the next element
+    a.next();
+
+    // Get the current position
+    int currentPosition = a.currPos();
+    std::cout << "Current Position: " << currentPosition << std::endl;
+
+    // Move to a specific position
+    a.moveToPos(1);
+
+    // Get the value at the current position
+    int value = a.getValue();
+    std::cout << "Value at current position: " << value << std::endl;
+
+    // Append an element to the list
+    a.append(40);
+
+    // Remove an element from the list
+    int removedValue = a.remove();
+    std::cout << "Removed Value: " << removedValue << std::endl;
+
+    // Get the length of the list
+    int listLength = a.length();
+    std::cout << "List Length: " << listLength << std::endl;
+
+    // Clear the list
+    a.clear();
+    std::cout << "List cleared." << std::endl;
+
+    // Re-insert elements after clearing
+    a.insert(50);
+    a.insert(60);
+
+    // Move to the start and iterate through the list
+    a.moveToStart();
+    while (a.currPos() < a.length()) {
+        std::cout << "Current Value: " << a.getValue() << std::endl;
+        a.next();
+    }
 
     return 0;
 }
