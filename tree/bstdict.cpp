@@ -13,10 +13,10 @@ class Node {
 		}
 		~Node() {
 			if (left!=nullptr) {
-	            delete left;
+			    delete left;
 	            left=nullptr;
 	        }
-	        if (right!=nullptr) {
+			if (right!=nullptr) {
 	            delete right;
 	            right=nullptr;
 	        }
