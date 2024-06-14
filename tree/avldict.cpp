@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
-
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 class Node {
@@ -185,31 +186,69 @@ public:
         posorder(root);
         cout << endl;
     }
+
+    void printTree(Node* node, string indent = "", bool last = true) {
+        if (node != nullptr) {
+            cout << indent;
+            if (last) {
+                cout << "R----";
+                indent += "     ";
+            } else {
+                cout << "L----";
+                indent += "|    ";
+            }
+            cout << node->key << endl;
+            printTree(node->left, indent, false);
+            printTree(node->right, indent, true);
+        }
+    }
+
+    Node* getRoot() {
+        return root;
+    }
+
+    bool isBalanced(Node* root) {
+        if (root == nullptr) return true;
+        int balance = getBalance(root);
+        if (balance > 1 || balance < -1) return false;
+        return isBalanced(root->left) && isBalanced(root->right);
+    }
 };
 
 int main() {
     AVL tree;
-    tree.insert(10, 1);
-    tree.insert(20, 2);
-    tree.insert(30, 3);
-    tree.insert(40, 4);
-    tree.insert(50, 5);
-    tree.insert(25, 6);
-
     cout << "Initial tree:" << endl;
-    tree.print();
+    tree.printTree(tree.getRoot());
+    tree.insert(10, 1);
+    cout << "After inserting 10:" << endl;
+    tree.printTree(tree.getRoot());
+    tree.insert(20, 2);
+    cout << "After inserting 20:" << endl;
+    tree.printTree(tree.getRoot());
+    tree.insert(30, 3);
+    cout << "After inserting 30:" << endl;
+    tree.printTree(tree.getRoot());
+    tree.insert(40, 4);
+    cout << "After inserting 40:" << endl;
+    tree.printTree(tree.getRoot());
+    tree.insert(50, 5);
+    cout << "After inserting 50:" << endl;
+    tree.printTree(tree.getRoot());
+    tree.insert(25, 6);
+    cout << "After inserting 25:" << endl;
+    tree.printTree(tree.getRoot());
 
     tree.remove(10);
     cout << "After removing 10:" << endl;
-    tree.print();
+    tree.printTree(tree.getRoot());
 
     tree.remove(20);
     cout << "After removing 20:" << endl;
-    tree.print();
+    tree.printTree(tree.getRoot());
 
     tree.remove(30);
     cout << "After removing 30:" << endl;
-    tree.print();
+    tree.printTree(tree.getRoot());
 
     return 0;
 }
