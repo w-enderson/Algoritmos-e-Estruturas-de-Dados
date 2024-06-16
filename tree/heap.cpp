@@ -65,7 +65,7 @@ public:
     }
 
     int getTop(){
-        if (n > 0) {
+        if (n > 1) {
             return H[1];
         } else {
             cout << "Heap vazia!" << endl;
