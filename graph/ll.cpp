@@ -17,12 +17,12 @@ public:
 
     void addEdge(int u, int v) {
         adj[u].push_back(v);
-        adj[v].push_back(u); // Arestas bidirecionais para grafos não direcionados
+        adj[v].push_back(u); 
     }
 
     void removeEdge(int u, int v) {
         adj[u].remove(v);
-        adj[v].remove(u); // Remover ambas as direções para grafos não direcionados
+        adj[v].remove(u);
     }
 
     void traverse() {
