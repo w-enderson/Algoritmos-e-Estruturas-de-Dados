@@ -1,0 +1,47 @@
+2023.2 - eef
+2023.1 - eef
+2022.2 - eef
+2022.1 - eef
+2021.2 - eef
+2021.1 - eef
+2020.3 - eef
+2020.2 - eef
+2020.1 - eef
+2019.2 - eef
+2019.1 - eef
+2018.2 - eef
+
+2022.1 - ee2
+2021.2 - ee2
+2021.1 - ee2
+2020.3 - ee2
+2020.2 - ee2
+2020.1 - ee2
+2019.2 - ee2
+2019.1 - ee2
+2018.2 - ee2
+
+2022.1 - ee1
+2021.2 - ee1
+2021.1 - ee1
+2020.3 - ee1
+2020.2 - ee1
+2020.1 - ee1
+2019.2 - ee1
+2019.1 - ee1 (contruir fórmulas de C(n), 1stack class - //push,pop,length//, 2quicksort, 1hash class - //h,p,insert//, 2AVL, 2min heap bottom up);
+2018.2 - ee1 (contruir fórmulas de C(n), 1find BST, 1quicksort, 2hash, 2AVL w/ rotation, 2heap max bottom up);
+
+2023.2 - ee
+2023.1 - ee
+2022.2 - ee
+
+2022.1 - 2ch
+2021.2 - 2ch
+2019.2 - 2ch
+2019.1 - 2ch
+2018.2 - 2ch
+
+
+
+
+
