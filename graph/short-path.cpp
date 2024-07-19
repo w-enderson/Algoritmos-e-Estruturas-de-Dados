@@ -23,15 +23,10 @@ public:
     }
 
     void dijkstra(int s) {
-        if (s < 0 || s >= V) {
-            cerr << "Invalid source vertex for Dijkstra: " << s << endl;
-            return;
-        }
-
         vector<int> D(V, INT_MAX);
         vector<int> P(V, -1);
         vector<bool> visited(V, false);
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
         D[s] = 0;
         pq.push({0, s});
@@ -43,7 +38,7 @@ public:
             if (visited[u]) continue;
             visited[u] = true;
 
-            for (const auto& [v, weight] : adj[u]) {
+            for (auto [v, weight] : adj[u]) {
                 if (D[u] + weight < D[v]) {
                     D[v] = D[u] + weight;
                     P[v] = u;
@@ -52,13 +47,13 @@ public:
             }
         }
 
-        cout << "Dijkstra from " << s << ":\n";
         for (int i = 0; i < V; ++i) {
-            if (D[i] == INT_MAX) {
-                cout << "Vertex " << i << ": INF\n";
+            int d = D[i];
+            if (d==INT_MAX){
+                cout << -1 << endl;
             } else {
-                cout << "Vertex " << i << ": Distance " << D[i] << ", Parent " << P[i] << "\n";
-            }
+                cout << d << endl;
+            }   
         }
     }
 
@@ -99,48 +94,48 @@ public:
         }
     }
 
-    void bellmanFord(int s) {
-        if (s < 0 || s >= V) {
-            cerr << "Invalid source vertex for Bellman-Ford: " << s << endl;
-            return;
+    void printArr(int dist[], int pred[]) {
+        for (int i=0; i<V; ++i) {
+            printf("Vertice: %d Antecessor: %d Distancia: %d\n", i, pred[i], dist[i]);
+        }
+    }
+
+    void BellmanFord(int src) {
+        int D[V];
+        int P[V]; 
+
+        for (int i=0; i<V; i++) {
+            D[i] = INT_MAX;
+            P[i] = -1; 
         }
 
-        vector<int> D(V, INT_MAX);
-        D[s] = 0;
+        D[src] = 0;
 
-        for (int k = 0; k < V - 1; ++k) {
-            for (int i = 0; i < V; ++i) {
-                for (const auto& [j, weight] : adj[i]) {
-                    if (D[i] != INT_MAX && D[i] + weight < D[j]) {
-                        D[j] = D[i] + weight;
+        for (int i=1; i<=V-1; i++) {
+            for (int u=0; u<V; u++) {
+                for (auto edge : adj[u]) {
+                    int v = edge.first;
+                    int w = edge.second;
+                    if (D[u]!=INT_MAX && (D[u]+w < D[v])) {
+                        D[v] = D[u] + w;
+                        P[v] = u;
                     }
                 }
             }
         }
 
-        bool hasNegativeCycle = false;
-        for (int i = 0; i < V; ++i) {
-            for (const auto& [j, weight] : adj[i]) {
-                if (D[i] != INT_MAX && D[i] + weight < D[j]) {
-                    hasNegativeCycle = true;
-                    break;
+        for (int u = 0; u < V; u++) {
+            for (auto edge : adj[u]) {
+                int v = edge.first;
+                int w = edge.second;
+                if (D[u]!=INT_MAX && D[u]+w < D[v]) {
+                    cout << "Ciclo negativo encontrado!" << endl;
+                    return; 
                 }
             }
-            if (hasNegativeCycle) break;
         }
 
-        if (hasNegativeCycle) {
-            cout << "Negative cycle detected\n";
-        } else {
-            cout << "Bellman-Ford from " << s << ":\n";
-            for (int i = 0; i < V; ++i) {
-                if (D[i] == INT_MAX) {
-                    cout << "Vertex " << i << ": INF\n";
-                } else {
-                    cout << "Vertex " << i << ": Distance " << D[i] << "\n";
-                }
-            }
-        }
+        printArr(D, P);
     }
 };
 
