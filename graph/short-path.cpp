@@ -31,7 +31,7 @@ public:
         vector<int> D(V, INT_MAX);
         vector<int> P(V, -1);
         vector<bool> visited(V, false);
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 
         D[s] = 0;
         pq.push({0, s});
@@ -157,6 +157,7 @@ int main() {
 
     int source = 0;
     cout << "Enter source vertex for Dijkstra: ";
+    cin >> source;
     graph.dijkstra(source);
 
     cout << "Running Floyd-Warshall algorithm...\n";
