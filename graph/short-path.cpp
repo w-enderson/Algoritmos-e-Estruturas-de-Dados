@@ -152,6 +152,7 @@ int main() {
 
     int source = 0;
     cout << "Enter source vertex for Dijkstra: ";
+    cin >> source;
     graph.dijkstra(source);
 
     cout << "Running Floyd-Warshall algorithm...\n";
